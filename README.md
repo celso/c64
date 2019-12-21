@@ -22,7 +22,7 @@ This is a simple demo for the C64:
 * Uses raster-based interrupts, perfectly timed.
 * Implements a random number generator.
 
-You can download the source code for it in this repository, change it and run it a real machine or an emulator. The code is all annotated, and you can use the issue tracker to ask us questions or make suggestions, we'll be listening.
+You can download the source code for it in [this repository][3], change it and run it a real machine or an emulator. The code is all annotated, and you can use the issue tracker to ask us questions or make suggestions, we'll be listening.
 
 ## Setup
 
@@ -57,6 +57,50 @@ And we have this alias in our ~/.bash_profile
 alias kick="java -jar /usr/local/KickAssembler/KickAss.jar"
 ```
 
+### C64 emulator
+
+
+There are plenty of Commodore 64 emulators out there. 
+
+* [VICE][4], the Versatile Commodore Emulator, is a program that runs on a Unix, Win32, or Mac OS X machines and emulates the C64 (and every other 65xx Commodore machine too).
+* [VirtualC64][5] is an interesting alternative for OSX written from scratch using C++ and native Cocoa and provides a real-time graphical inspector of the CPU, Memory, and the other Chips, while it's running.
+
+We used VICE. One more bash alias:
+
+```
+alias c64="/Applications/x64.app/Contents/MacOS/x64"
+```
+
+### Debugging
+
+Debugging assembly when things go south can be challenging. Back in the 80s, debugging meant spending hours doing trial and error, rebooting the machine, reload the code from the cassette (or disk drive, if you were lucky), and writing code to paper just in case you'd lose it in the process.
+
+Luckily, now we have way better tools.
+
+* The [C64 65XE Debugger][6] is a C64 and Atari XL/XE code and memory debugger that works in real-time and embeds the VICE emulator in the same graphical interface. It allows you to see what's happening with every chip, register, memory block; you can set breakpoints, run the program instruction by instruction, and see what's happening right in the embedded emulator.
+
+* The VICE emulator [built-in monitor][7] can also be used to examine, disassemble, and assemble machine language programs, as well as debug them through breakpoints. It has loads of powerful features.
+
+Where were these tools in 1986?
+
+### Graphics
+
+Dealing with graphics is a lot easier now too.
+
+* [Retropixels][8] is a cross-platform command-line tool to convert any image to Commodore 64 graphical modes and file formats, including Koala (.kla or .koa), which is supported by the Kick Assembler load helpers.
+
+* [Spritemate][9] is an online browser-based Commodore 64 sprite editor and supports importing and exporting of the most common file formats, as well as direct Kick Assembler hexadecimal arrays.
+
+
+
 
 [1]: https://www.hvsc.c64.org/
 [2]: http://theweb.dk/KickAssembler/
+[3]: https://github.com/brpx/c64
+[4]: http://vice-emu.sourceforge.net/
+[5]: http://www.dirkwhoffmann.de/virtualc64/
+[6]: https://sourceforge.net/projects/c64-debugger/
+[7]: http://vice-emu.sourceforge.net/vice_12.html#SEC271
+[8]: https://github.com/micheldebree/retropixels
+[9]: https://github.com/Esshahn/spritemate
+
