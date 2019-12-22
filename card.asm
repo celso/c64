@@ -383,12 +383,12 @@ printchr:
 
 // ok, we're using two interrupts here
 // the first, irq1, is triggered at scanline 240
-// the second, irq2, is triggered at scanline 16
+// the second, irq2, is triggered at scanline 10
 // at the end irq1 we set irq2 and vice-versa
 
 // irq1
 // we use irq1 (from scanline 240 onwards) to change the VIC-II to text mode, scroll the bottom text message,
-// and rewrite it with scroll_message()
+// rewrite it with scroll_message(), and play the music.
 
 irq1:
     ack();
@@ -402,6 +402,10 @@ irq1:
     exitirq();
     rti
 
+
+// irq2
+// we use irq2 (from scanline 10 onwards) to alternate between the two pictures
+// by switching the VIC-II to bitmap mode and pointing it to the right memory banks
 
 irq2:
     ack();

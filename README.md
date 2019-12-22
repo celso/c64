@@ -129,9 +129,86 @@ We've annotated the .asm sources with all the information you need to understand
 
 Either way, here's a quick run through the main components of this little demo.
 
+**Loading external files with Kick Assembler**
 
+Kick Assembler has a couple of helpers to load known file formats into memory at assembly time. We're using two of these, [LoadBinary()][23] and [LoadSid()][24].
 
+LoadBinary is loading the Koala screen bitmaps we previously converted with [retropixels][8], while LoadSid is loading the data and code to play the music.sid file. You can check the [code][22] to see how we handle the music playing and the screen bitmaps in memory.
 
+```
+.var music = LoadSid("music.sid")
+.var picture1 = LoadBinary("screen1.koa", BF_KOALA)
+.var picture2 = LoadBinary("screen2.koa", BF_KOALA)
+```
+
+**Setting and using the interrupts**
+
+We're using [raster interrupts][26] with our demo. These interrupts trigger at specific scan lines, that we set with $D012.
+
+First we need to turn on the interrupts and set the first one when the program starts. This is how:
+
+```
+// disable the interrupts
+sei
+// first interrupt will be irq1 at scan line 240
+setupirq(240, irq1);
+// interrupt control - enable all interrupts with $7b
+lda #%01111011
+sta $dc0d
+// interrupt control register - enable raster interrupt with $81
+lda #%10000001
+sta $d01a
+// enable interrupts now
+cli
+```
+
+Later we use the irq1 and irq2 interrupts.
+
+irq1 is triggered at scanline 240 and we use it to change the VIC-II to text mode, scroll the bottom text message and play the usic
+
+irq2 is triggered at scanline 10 and we use it to to alternate between the two pictures by switching the VIC-II to bitmap mode and pointing it to the right memory banks.
+
+Here's irq1 from the [code][22]:
+
+```
+irq1:
+    ack();
+    // keep scrolling the bottom line
+    jsr scroll_message
+    // keep the music playing
+    jsr music.play
+    // jump to irq2 at line 10
+    setupirq(10, irq2);
+    // over and out
+    exitirq();
+    rti
+```
+
+Notice how each interrupt needs to:
+
+1. Acknowledge it started.
+1. Do its job.
+1. Setup the next interrupt.
+1. Restore the stack before exiting, then exit with [rti][26].
+
+**Random number generator**
+
+The C64 doesn't have a random number generator, so we need to find a few unpredictable variables to play with to calculate one. This is a clever way to return a random number:
+
+```
+.macro rndGen(mask) {
+    // see http://sta.c64.org/cbm64mem.html
+    // first we read the current raster line (0-255)
+    lda $d012
+    // then we xor it with timer A (low byte)
+    // see https://www.c64-wiki.com/wiki/CIA
+    eor $dc04
+    // then we subtract it with timer A (high byte)
+    sbc $dc05
+    // finally we mask it so we can have a number between 0 and bits^2
+    and #mask
+}
+```
 
 
 [1]: https://www.hvsc.c64.org/
@@ -156,3 +233,7 @@ Either way, here's a quick run through the main components of this little demo.
 [20]: http://www.unusedino.de/ec64/technical/aay/c64/bmain.htm
 [21]: https://dustlayer.com/vic-ii/2013/4/26/vic-ii-for-beginners-screen-modes-cheaper-by-the-dozen
 [22]: card.asm
+[23]: http://theweb.dk/KickAssembler/webhelp/content/ch12s02.html
+[24]: http://www.theweb.dk/KickAssembler/webhelp/content/ch12s03.html
+[25]: https://www.c64-wiki.com/wiki/Raster_interrupt
+[26]: http://www.unusedino.de/ec64/technical/aay/c64/brti.htm
