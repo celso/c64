@@ -4,13 +4,15 @@ This is a pure 6510 assembly program for the Commodore 64 made by Bright Pixel i
 
 ![Screenshot](img/demo.gif?raw=true)
 
-The C64 was a famous 8-bit machine in the 80s and the highest-selling single computer model ever.
+The [C64][29] was a famous 8-bit machine in the 80s and the highest-selling single computer model ever.
 
-Its hardware and architecture set it appart from other 8-bit personal computers at the time. Unlike most of the others, the C64 had dedicated advanced MOS chips for graphics and sprites (the VIC-II), sound (the SID), I/O (the CIA), and many others.
+Its hardware and architecture set it appart from other 8-bit personal computers at the time. Unlike most of the others, the C64 had dedicated advanced MOS chips for graphics and sprites (the [VIC-II][30]), sound (the [SID][31]), I/O (the CIA), and many others.
 
 These chips were not only powerful for the time, but they would perform their tasks autonomously, independently of what the main CPU, a MOS technology 6510 microprocessor, was doing. For instance, the VIC-II could generate interrupts on automatic sprite collisions. The CPU and the other chips also shared common data and memory BUSes.
 
 The cope with all these chips inside 64Kbytes of addressable memory, the C64 had something called memory overlay, in which different chips would access different physical data locations for the same memory address. For instance the $D000-$DFFF block could be used for RAM, I/O or access to Character ROM, by the CPU, depending on a $0001 setting. Chips would have to be turned on or off, or instructed to look for data at specific RAM/ROM locations all the time to make the most of the machine as whole.
+
+![Screenshot](https://upload.wikimedia.org/wikipedia/commons/8/8e/0430_-_C64_Mainboard_ASSY250407_RevB.jpg)
 
 This was impressive in the 80s, for a relatevily cheap mass-market personal computer.
 
@@ -307,3 +309,6 @@ Happy holidays.
 [26]: https://twitter.com/search?q=%23c64brpx
 [27]: https://github.com/brpx/c64/issues
 [28]: https://blog.pixels.camp/writing-a-zx-spectrum-game-6ffff2e5f10f
+[29]: https://en.wikipedia.org/wiki/Commodore_64
+[30]: https://en.wikipedia.org/wiki/MOS_Technology_VIC-II
+[31]: https://en.wikipedia.org/wiki/MOS_Technology_6581
