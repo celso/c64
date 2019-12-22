@@ -2,6 +2,8 @@
 
 This is a pure 6510 assembly program for the Commodore 64 made by Bright Pixel in 2019, because why not.
 
+![Screenshot](img/demo.gif?raw=true)
+
 The C64 was a famous 8-bit machine in the 80s and the highest-selling single computer model ever.
 
 Its hardware and architecture set it appart from other 8-bit personal computers at the time. Unlike most of the others, the C64 had dedicated advanced MOS chips for graphics and sprites (the VIC-II), sound (the SID), I/O (the CIA), and many others.
@@ -241,9 +243,10 @@ Playing a SID music in Kick Assembler has 3 parts:
 3. You call music.play in every raster cycle (using one of the interrupts).
 
 Again, be careful. A SID file contains both the data and the code to play the music. The code must reside in a specific RAM address, specified inside the SID file, and changes from music to music, which means that if you want to use another .sid file with this demo, you need to make sure that:
-    * It starts in the same memory address.
-    * You change the code accordingly, if it doesn't (advanced).
-    * It doesn't overlap with the rest of the memory we need to run our program (Kick Assembler will warn you if it does). RAM is scarse, and musics can be big.
+
+* It starts in the same memory address.
+* You change the code accordingly, if it doesn't (advanced).
+* It doesn't overlap with the rest of the memory we need to run our program (Kick Assembler will warn you if it does). RAM is scarse, and musics can be big.
 
 ## End
 
