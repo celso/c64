@@ -210,6 +210,53 @@ The C64 doesn't have a random number generator, so we need to find a few unpredi
 }
 ```
 
+**Using Sprites**
+
+A Sprite or a Movable Object Block (abbreviated to MOB) is a piece of graphics that can move and be assigned attributes independent of other graphics or text on the screen. The VIC-II, which is responsible for this feature of the C-64, supports up to eight sprites.
+
+You can design your sprites with [Spritemate][23] and export them the Kick Assembler code directly by pressing file->save file->kick ass(hex).
+
+You can check [this page][24] for more information about Sprites and how they work.
+
+Also check the [sprites.asm][22] code.
+
+A few things you need to know about Sprites:
+
+* They need to be in a memory address that is divisible by 64
+* They need to be in the same VIC-II video block where you want to display them
+* There's an array of Sprite pointers which contains the address of the sprite, relative to the beginning of the video block, divided by 64 (hence the first point).
+
+We're using eight sprites with this demo with two different bitmaps. The sprites are displayed on the screen1 only, have fixed horizontal offsets, fall down the screen by changing their vertical offset in the main loop (we're not using the interrupts to handle the sprites) and randomnly change colors when they start at vertical offset zero.
+
+**Playing music**
+
+The music is loaded to the demo using an external SID file and Kick Assembler's LoadSid() helper.
+
+You can [read above][#sid-songs] for more information on SID and SID files.
+
+Playing a SID music in Kick Assembler has 3 parts:
+
+1. You use [LoadSid()][24] to import the .sid file
+2. You call music.init at start-up.
+3. You call music.play in every raster cycle (using one of the interrupts).
+
+Again, be careful. A SID file contains both the data and the code to play the music. The code must reside in a specific RAM address, specified inside the SID file, and changes from music to music, which means that if you want to use another .sid file with this demo, you need to make sure that:
+    * It starts in the same memory address.
+    * You change the code accordingly, if it doesn't (advanced).
+    * It doesn't overlap with the rest of the memory we need to run our program (Kick Assembler will warn you if it does). RAM is scarse, and musics can be big.
+
+## End
+
+That's it. We hope you enjoyed reading this. Hopefully, you'll be playing with this demo, changing the source, and making it your own, feel free to use it. We had a lot of fun coding it.
+
+If you have questions or suggestions, leave them in the [issue tracker][27], we'll be listening.
+
+If you run the demo or change it in any way,  post it in the social webs, using the tag [#c64brpx][26], or mention [@brpxco][25].
+
+We did a [ZX Spectrum demo][28] a few months back; you might want to check it too.
+
+Happy holidays.
+
 
 [1]: https://www.hvsc.c64.org/
 [2]: http://theweb.dk/KickAssembler/
@@ -237,3 +284,10 @@ The C64 doesn't have a random number generator, so we need to find a few unpredi
 [24]: http://www.theweb.dk/KickAssembler/webhelp/content/ch12s03.html
 [25]: https://www.c64-wiki.com/wiki/Raster_interrupt
 [26]: http://www.unusedino.de/ec64/technical/aay/c64/brti.htm
+[22]: sprites.asm
+[23]: http://spritemate.com/
+[24]: https://www.c64-wiki.com/wiki/Sprite
+[25]: https://twitter.com/brpxco
+[26]: https://twitter.com/search?q=%23c64brpx
+[27]: https://github.com/brpx/c64/issues
+[28]: https://blog.pixels.camp/writing-a-zx-spectrum-game-6ffff2e5f10f
