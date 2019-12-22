@@ -8,17 +8,17 @@ The [C64][29] was a famous 8-bit machine in the 80s and the highest-selling sing
 
 Its hardware and architecture set it appart from other 8-bit personal computers at the time. Unlike most of the others, the C64 had dedicated advanced MOS chips for graphics and sprites (the [VIC-II][30]), sound (the [SID][31]), I/O (the CIA), and many others.
 
-These chips were not only powerful for the time, but they would perform their tasks autonomously, independently of what the main CPU, a MOS technology 6510 microprocessor, was doing. For instance, the VIC-II could generate interrupts on automatic sprite collisions. The CPU and the other chips also shared common data and memory BUSes.
+These chips were not only powerful for the time, but they could perform their tasks autonomously, independently of what the main CPU, a MOS technology 6510 microprocessor, was doing. For instance, the VIC-II could generate interrupts on automatic sprite collisions. The CPU and the other chips also shared common data and memory BUSes.
 
-The cope with all these chips inside 64Kbytes of addressable memory, the C64 had something called memory overlay, in which different chips would access different physical data locations for the same memory address. For instance the $D000-$DFFF block could be used for RAM, I/O or access to Character ROM, by the CPU, depending on a $0001 setting. Chips would have to be turned on or off, or instructed to look for data at specific RAM/ROM locations all the time to make the most of the machine as whole.
+The cope with all these chips inside 64Kbytes of addressable memory, the C64 had something called memory overlay, in which different chips would access different physical data locations for the same memory address. For instance the $D000-$DFFF block could be used for RAM, I/O or access to Character ROM, by the CPU, depending on a $0001 setting. Chips would have to be turned on or off, or instructed to look for data at specific RAM/ROM locations all the time to make the most of the machine as a whole.
 
 ![Screenshot](https://upload.wikimedia.org/wikipedia/commons/8/8e/0430_-_C64_Mainboard_ASSY250407_RevB.jpg)
 
 This was impressive in the 80s, for a relatevily cheap mass-market personal computer.
 
-Programming the C64 was a lot of fun, and an art. Because of the way all this hardware was packed together, handling the machine meant knowing its memory map and registers by heart, and dominating a quite a collection of tricks, some of which weren't documented at all. What ended up being written for the C64 by the global talented fervent community of developers went way beyond the imagination of Jack Tramiel.
+Programming the C64 was more than a lot of fun, it was a form of art. Because of the way all this hardware was packed together, handling the machine meant knowing its memory map and registers by heart, and dominating a quite a collection of tricks, some of which weren't documented at all. What ended up being written for the C64 by the global talented fervent community of developers went way beyond the imagination of [Jack Tramiel][32].
 
-Today, in 2019, the cult is still alive. There are vast groups of developers still writing C64 games and demos, restoring and using old machines, or using emulators. The SID sound chip was so revolutionary that it still drives a community of chiptune artists all over the world. The [High Voltage SID Collection][1] has more than 50,000 songs archived and growing.
+Today, in 2019, the cult is still alive. There are vast groups of developers still writing C64 games and demos, restoring and using old machines, or using emulators. The SID sound chip was so revolutionary that it still drives a community of chiptune artists [all over][33] the world. The [High Voltage SID Collection][1] has more than 50,000 songs archived and growing.
 
 At Bright Pixel, we like to go low-level, and we think that understanding how things work down there, even if we're talking about a 40 years old machine, is enriching, helps us become better computer engineers and better problem solvers. This is especially important in a time when we're flooded with hundreds of high-level frameworks that just "do the job." Until they don't.
 
@@ -30,13 +30,15 @@ This is a simple demo for the C64:
 * Uses raster-based interrupts, perfectly timed.
 * Implements a random number generator.
 
-You can download the source code for it in [this repository][3], change it and run it a real machine or an emulator. The code is all annotated, and you can use the issue tracker to ask us questions or make suggestions, we'll be listening.
+You can download the source code for it in [this repository][3], change it and run it a real machine or an emulator. The code is all annotated, and you can use the [issue tracker][27] to ask us questions or make suggestions, we'll be listening.
 
 ## Setup
 
 ### Assembler
 
-We used the Kick Assembler to build the PRG from the source. KA is still maintained up until today, with regular releases launched every couple of months. It supports MOS 65xx assembler, macros, pseudo commands and has a couple of helpers to load SID and graphics files into memory. Unfortunately, you need Java to run it. Here's the setup in OSX.
+We used the [Kick Assembler][2] to build the PRG from the source. KA is still maintained up until today, with regular releases launched every couple of months. It supports [MOS 65xx assembler][26], macros, pseudo commands and has a couple of helpers to load SID and graphics files into memory. Unfortunately, you need Java to run it, but it's worth the trouble.
+
+Here's the setup in OSX.
 
 Install Java
 
@@ -58,7 +60,7 @@ This should be the contents of /usr/local/KickAssembler/KickAss.cfg
 -showmem
 ```
 
-And we have this alias in our ~/.bash_profile
+And we have this alias in our ~/.bash_profile for convenience.
 
 ```
 alias kick="java -jar /usr/local/KickAssembler/KickAss.jar"
@@ -111,8 +113,8 @@ Here are a few things you should know about SID and SID files:
 
 * A SID file contains both the data and the code to play the music. The code must reside in a specific RAM address, specified inside the SID file, and changes from music to music, which means that if you want to use another .sid file with this demo, you need to make sure that:
     * It starts in the same memory address.
-    * You change the code accordingly, if it doesn't (advanced).
-    * It doesn't overlap with the rest of the memory we need to run our program (Kick Assembler will warn you if it does). RAM is scarse, and musics can be big.
+    * You change the code accordingly if it doesn't (advanced).
+    * It doesn't overlap with the rest of the memory we need to run our program (Kick Assembler will warn you if it does). RAM is scarce and musics can be big.
 * You can check the SID file [specification here][12].
 * You should absolutely take a look at the [High Voltage SID Collection][13] and this [SID player & visualizer][15] ([github][16]) in javascript
 
@@ -125,8 +127,8 @@ These are handy resources you can use:
 * The [Commodore 64 memory map][10] explaining the functioning of all addresses, registers and memory blocks.
 * The [C64 Wiki][11] is the online bible of all things Commodore 64, including detailed information of how the hardware works.
 * Not the bible, but [Codebase64][18] is pretty good too.
-* A KickAssembler [syntax file][17] for Vim.
-* Understanding the [character and bitmap][19] graphic modes, memory banks, and how the chips interact with each other.
+* A Kick Assembler [syntax file][17] for Vim.
+* Understanding the [character and bitmap][19] graphics modes, memory banks, and how the chips interact with each other.
 * 6510 CPU [instructions][20].
 * Great article explaining the VIC-II [screen modes][21].
 
@@ -160,9 +162,9 @@ LoadBinary is loading the Koala screen bitmaps we previously converted with [ret
 
 **Setting and using the interrupts**
 
-We're using [raster interrupts][26] with our demo. These interrupts trigger at specific scan lines, that we set with $D012.
+We're using [raster interrupts][26] with our demo. These interrupts trigger at specific scan lines that we set with $D012.
 
-First we need to turn on the interrupts and set the first one when the program starts. This is how:
+First, we need to turn on the interrupts and set the first one when the program starts. This is how:
 
 ```
 // disable the interrupts
@@ -181,9 +183,9 @@ cli
 
 Later we use the irq1 and irq2 interrupts.
 
-irq1 is triggered at scanline 240 and we use it to change the VIC-II to text mode, scroll the bottom text message and play the usic
+irq1 is triggered at scanline 240, and we use it to change the VIC-II to text mode, scroll the bottom text message and play the music.
 
-irq2 is triggered at scanline 10 and we use it to to alternate between the two pictures by switching the VIC-II to bitmap mode and pointing it to the right memory banks.
+irq2 is triggered at scanline 10, and we use it to alternate between the two pictures by switching the VIC-II to bitmap mode and pointing it to the right memory banks.
 
 Here's irq1 from the [code][22]:
 
@@ -235,15 +237,15 @@ You can design your sprites with [Spritemate][23] and export them the Kick Assem
 
 You can check [this page][24] for more information about Sprites and how they work.
 
-Also check the [sprites.asm][22] code.
+Also, check the [sprites.asm][22] code.
 
 A few things you need to know about Sprites:
 
 * They need to be in a memory address that is divisible by 64
 * They need to be in the same VIC-II video block where you want to display them
-* There's an array of Sprite pointers which contains the address of the sprite, relative to the beginning of the video block, divided by 64 (hence the first point).
+* There's an array of Sprite pointers that contains the address of the sprite, relative to the beginning of the video block, divided by 64 (hence the first point).
 
-We're using eight sprites with this demo with two different bitmaps. The sprites are displayed on the screen1 only, have fixed horizontal offsets, fall down the screen by changing their vertical offset in the main loop (we're not using the interrupts to handle the sprites) and randomnly change colors when they start at vertical offset zero.
+We're using eight sprites with this demo with two different bitmaps. The sprites are displayed on the screen1 only, have fixed horizontal offsets, fall down the screen by changing their vertical offset in the main loop (we're not using the interrupts to handle the sprites), and randomly change colors when they start at vertical offset zero.
 
 **Playing music**
 
@@ -251,7 +253,7 @@ The music is loaded to the demo using an external SID file and Kick Assembler's 
 
 You can [read above][#sid-songs] for more information on SID and SID files.
 
-Playing a SID music in Kick Assembler has 3 parts:
+Playing a SID music in Kick Assembler has three parts:
 
 1. You use [LoadSid()][24] to import the .sid file
 2. You call music.init at start-up.
@@ -260,8 +262,8 @@ Playing a SID music in Kick Assembler has 3 parts:
 Again, be careful. A SID file contains both the data and the code to play the music. The code must reside in a specific RAM address, specified inside the SID file, and changes from music to music, which means that if you want to use another .sid file with this demo, you need to make sure that:
 
 * It starts in the same memory address.
-* You change the code accordingly, if it doesn't (advanced).
-* It doesn't overlap with the rest of the memory we need to run our program (Kick Assembler will warn you if it does). RAM is scarse, and musics can be big.
+* You change the code accordingly if it doesn't (advanced).
+* It doesn't overlap with the rest of the memory we need to run our program (Kick Assembler will warn you if it does). RAM is scarce and musics can be big.
 
 ## End
 
@@ -312,3 +314,5 @@ Happy holidays.
 [29]: https://en.wikipedia.org/wiki/Commodore_64
 [30]: https://en.wikipedia.org/wiki/MOS_Technology_VIC-II
 [31]: https://en.wikipedia.org/wiki/MOS_Technology_6581
+[32]: https://en.wikipedia.org/wiki/Jack_Tramiel
+[33]: https://www.kickstarter.com/projects/8-bit-symphony/8-bit-symphony-pro-double-orchestral-cd-of-8-bit-classics
