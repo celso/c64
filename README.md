@@ -4,9 +4,9 @@ This is a pure 6510 assembly program for the Commodore 64 made by Bright Pixel i
 
 ![Screenshot](img/demo.gif?raw=true)
 
-The [C64][29] was a famous 8-bit machine in the 80s and the highest-selling single computer model ever.
+The [C64][34] was a famous 8-bit machine in the 80s and the highest-selling single computer model ever.
 
-Its hardware and architecture set it appart from other 8-bit personal computers at the time. Unlike most of the others, the C64 had dedicated advanced MOS chips for graphics and sprites (the [VIC-II][30]), sound (the [SID][31]), I/O (the CIA), and many others.
+Its hardware and architecture set it appart from other 8-bit personal computers at the time. Unlike most of the others, the C64 had dedicated advanced MOS chips for graphics and sprites (the [VIC-II][35]), sound (the [SID][36]), I/O (the CIA), and many others.
 
 These chips were not only powerful for the time, but they could perform their tasks autonomously, independently of what the main CPU, a MOS technology 6510 microprocessor, was doing. For instance, the VIC-II could generate interrupts on automatic sprite collisions. The CPU and the other chips also shared common data and memory BUSes.
 
@@ -16,9 +16,9 @@ To cope with all these chips inside 64Kbytes of addressable memory, the C64 had 
 
 This was impressive in the 80s, for a relatevily cheap mass-market personal computer.
 
-Programming the C64 was more than a lot of fun, it was a form of art. Because of the way all this hardware was packed together, handling the machine meant knowing its memory map and registers by heart, and dominating a quite a collection of tricks, some of which weren't documented at all. What ended up being written for the C64 by the global talented fervent community of developers went way beyond the imagination of [Jack Tramiel][32].
+Programming the C64 was more than a lot of fun, it was a form of art. Because of the way all this hardware was packed together, handling the machine meant knowing its memory map and registers by heart, and dominating a quite a collection of tricks, some of which weren't documented at all. What ended up being written for the C64 by the global talented fervent community of developers went way beyond the imagination of [Jack Tramiel][37].
 
-Today, in 2019, the cult is still alive. There are vast groups of developers still writing C64 games and demos, restoring and using old machines, or using emulators. The SID sound chip was so revolutionary that it still drives a community of chiptune artists [all over][33] the world. The [High Voltage SID Collection][1] has more than 50,000 songs archived and growing.
+Today, in 2019, the cult is still alive. There are vast groups of developers still writing C64 games and demos, restoring and using old machines, or using emulators. The SID sound chip was so revolutionary that it still drives a community of chiptune artists [all over][38] the world. The [High Voltage SID Collection][1] has more than 50,000 songs archived and growing.
 
 At Bright Pixel, we like to go low-level, and we think that understanding how things work down there, even if we're talking about a 40 years old machine, is enriching, helps us become better computer engineers and better problem solvers. This is especially important in a time when we're flooded with hundreds of high-level frameworks that just "do the job." Until they don't.
 
@@ -30,7 +30,7 @@ This is a simple demo for the C64:
 * Uses raster-based interrupts, perfectly timed.
 * Implements a random number generator.
 
-You can download the source code for it in [this repository][3], change it and run it a real machine or an emulator. The code is all annotated, and you can use the [issue tracker][27] to ask us questions or make suggestions, we'll be listening.
+You can download the source code for it in [this repository][3], change it and run it a real machine or an emulator. The code is all annotated, and you can use the [issue tracker][32] to ask us questions or make suggestions, we'll be listening.
 
 ## Setup
 
@@ -233,11 +233,11 @@ The C64 doesn't have a random number generator, so we need to find a few unpredi
 
 A Sprite or a Movable Object Block (abbreviated to MOB) is a piece of graphics that can move and be assigned attributes independent of other graphics or text on the screen. The VIC-II, which is responsible for this feature of the C-64, supports up to eight sprites.
 
-You can design your sprites with [Spritemate][23] and export them the Kick Assembler code directly by pressing file->save file->kick ass(hex).
+You can design your sprites with [Spritemate][28] and export them the Kick Assembler code directly by pressing file->save file->kick ass(hex).
 
-You can check [this page][24] for more information about Sprites and how they work.
+You can check [this page][29] for more information about Sprites and how they work.
 
-Also, check the [sprites.asm][22] code.
+Also, check the [sprites.asm][27] code.
 
 A few things you need to know about Sprites:
 
@@ -269,11 +269,11 @@ Again, be careful. A SID file contains both the data and the code to play the mu
 
 That's it. We hope you enjoyed reading this. Hopefully, you'll be playing with this demo, changing the source, and making it your own, feel free to use it. We had a lot of fun coding it.
 
-If you have questions or suggestions, leave them in the [issue tracker][27], we'll be listening.
+If you have questions or suggestions, leave them in the [issue tracker][32], we'll be listening.
 
-If you run the demo or change it in any way,  post it in the social webs, using the tag [#c64brpx][26], or mention [@brpxco][25].
+If you run the demo or change it in any way,  post it in the social webs, using the tag [#c64brpx][31], or mention [@brpxco][30].
 
-We did a [ZX Spectrum demo][28] a few months back; you might want to check it too.
+We did a [ZX Spectrum demo][33] a few months back; you might want to check it too.
 
 Happy holidays.
 
@@ -304,15 +304,15 @@ Happy holidays.
 [24]: http://www.theweb.dk/KickAssembler/webhelp/content/ch12s03.html
 [25]: https://www.c64-wiki.com/wiki/Raster_interrupt
 [26]: http://www.unusedino.de/ec64/technical/aay/c64/brti.htm
-[22]: sprites.asm
-[23]: http://spritemate.com/
-[24]: https://www.c64-wiki.com/wiki/Sprite
-[25]: https://twitter.com/brpxco
-[26]: https://twitter.com/search?q=%23c64brpx
-[27]: https://github.com/brpx/c64/issues
-[28]: https://blog.pixels.camp/writing-a-zx-spectrum-game-6ffff2e5f10f
-[29]: https://en.wikipedia.org/wiki/Commodore_64
-[30]: https://en.wikipedia.org/wiki/MOS_Technology_VIC-II
-[31]: https://en.wikipedia.org/wiki/MOS_Technology_6581
-[32]: https://en.wikipedia.org/wiki/Jack_Tramiel
-[33]: https://www.kickstarter.com/projects/8-bit-symphony/8-bit-symphony-pro-double-orchestral-cd-of-8-bit-classics
+[27]: sprites.asm
+[28]: http://spritemate.com/
+[29]: https://www.c64-wiki.com/wiki/Sprite
+[30]: https://twitter.com/brpxco
+[31]: https://twitter.com/search?q=%23c64brpx
+[32]: https://github.com/brpx/c64/issues
+[33]: https://blog.pixels.camp/writing-a-zx-spectrum-game-6ffff2e5f10f
+[34]: https://en.wikipedia.org/wiki/Commodore_64
+[35]: https://en.wikipedia.org/wiki/MOS_Technology_VIC-II
+[36]: https://en.wikipedia.org/wiki/MOS_Technology_6581
+[37]: https://en.wikipedia.org/wiki/Jack_Tramiel
+[38]: https://www.kickstarter.com/projects/8-bit-symphony/8-bit-symphony-pro-double-orchestral-cd-of-8-bit-classics
