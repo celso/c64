@@ -10,7 +10,7 @@ Its hardware and architecture set it appart from other 8-bit personal computers 
 
 These chips were not only powerful for the time, but they could perform their tasks autonomously, independently of what the main CPU, a MOS technology 6510 microprocessor, was doing. For instance, the VIC-II could generate interrupts on automatic sprite collisions. The CPU and the other chips also shared common data and memory BUSes.
 
-The cope with all these chips inside 64Kbytes of addressable memory, the C64 had something called memory overlay, in which different chips would access different physical data locations for the same memory address. For instance the $D000-$DFFF block could be used for RAM, I/O or access to Character ROM, by the CPU, depending on a $0001 setting. Chips would have to be turned on or off, or instructed to look for data at specific RAM/ROM locations all the time to make the most of the machine as a whole.
+To cope with all these chips inside 64Kbytes of addressable memory, the C64 had something called memory overlay, in which different chips would access different physical data locations for the same memory address. For instance the $D000-$DFFF block could be used for RAM, I/O or access to Character ROM, by the CPU, depending on a $0001 setting. Chips would have to be turned on or off, or instructed to look for data at specific RAM/ROM locations all the time to make the most of the machine as a whole.
 
 ![Screenshot](https://upload.wikimedia.org/wikipedia/commons/8/8e/0430_-_C64_Mainboard_ASSY250407_RevB.jpg)
 
@@ -251,7 +251,7 @@ We're using eight sprites with this demo with two different bitmaps. The sprites
 
 The music is loaded to the demo using an external SID file and Kick Assembler's LoadSid() helper.
 
-You can [read above][#sid-songs] for more information on SID and SID files.
+You can [read above](#sid-songs) for more information on SID and SID files.
 
 Playing a SID music in Kick Assembler has three parts:
 
