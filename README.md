@@ -64,8 +64,9 @@ alias kick="java -jar /usr/local/KickAssembler/KickAss.jar"
 
 ### C64 emulator
 
+There are plenty of Commodore 64 emulators out there.
 
-There are plenty of Commodore 64 emulators out there. 
+![Screenshot](img/emulator.png?raw=true)
 
 * [VICE][4], the Versatile Commodore Emulator, is a program that runs on a Unix, Win32, or Mac OS X machines and emulates the C64 (and every other 65xx Commodore machine too).
 * [VirtualC64][5] is an interesting alternative for OSX written from scratch using C++ and native Cocoa and provides a real-time graphical inspector of the CPU, Memory, and the other Chips, while it's running.
@@ -81,6 +82,8 @@ alias c64="/Applications/x64.app/Contents/MacOS/x64"
 Debugging assembly when things go south can be challenging. Back in the 80s, debugging meant spending hours doing trial and error, rebooting the machine, reload the code from the cassette (or disk drive, if you were lucky), and writing code to paper just in case you'd lose it in the process.
 
 Luckily, now we have way better tools.
+
+![Screenshot](img/debugger.png?raw=true)
 
 * The [C64 65XE Debugger][6] is a C64 and Atari XL/XE code and memory debugger that works in real-time and embeds the VICE emulator in the same graphical interface. It allows you to see what's happening with every chip, register, memory block; you can set breakpoints, run the program instruction by instruction, and see what's happening right in the embedded emulator.
 
@@ -129,7 +132,17 @@ These are handy resources you can use:
 
 We've annotated the .asm sources with all the information you need to understand what we're doing, why, and where to find more. You can start by looking at the main [card.asm][22] file and move from there.
 
-Either way, here's a quick run through the main components of this little demo.
+To assemble the sources into an executable PRG file, all you need to do is:
+
+```
+java -jar /usr/local/KickAssembler/KickAss.jar card.asm
+```
+
+And the output should be something like this:
+
+![Screenshot](img/assembly.png?raw=true)
+
+Here's a quick run through the main components of this little demo. Find the rest of the information in the [source][22] itself.
 
 **Loading external files with Kick Assembler**
 
