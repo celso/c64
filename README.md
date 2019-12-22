@@ -120,8 +120,17 @@ These are handy resources you can use:
 * Not the bible, but [Codebase64][18] is pretty good too.
 * A KickAssembler [syntax file][17] for Vim.
 * Understanding the [character and bitmap][19] graphic modes, memory banks, and how the chips interact with each other.
+* 6510 CPU [instructions][20].
+* Great article explaining the VIC-II [screen modes][21].
 
 ## The Code
+
+We've annotated the .asm sources with all the information you need to understand what we're doing, why, and where to find more. You can start by looking at the main [card.asm][22] file and move from there.
+
+Either way, here's a quick run through the main components of this little demo.
+
+
+
 
 
 
@@ -144,3 +153,6 @@ These are handy resources you can use:
 [17]: https://github.com/gryf/kickass-syntax-vim
 [18]: https://codebase64.org/
 [19]: http://www.coding64.org/?p=164
+[20]: http://www.unusedino.de/ec64/technical/aay/c64/bmain.htm
+[21]: https://dustlayer.com/vic-ii/2013/4/26/vic-ii-for-beginners-screen-modes-cheaper-by-the-dozen
+[22]: card.asm

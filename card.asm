@@ -457,18 +457,20 @@ s2:
     rti
 
 // holds the index of the screen we're displaying
-// 0 for screen1, 1 for screen2...
+// 0 for screen1, 1 for screen2
 screen_state: .byte 0
+// holds a counter to delay the screen swap
 counter: .byte 0
 
 #import "message.asm"
-
-raster_h_offset:   .byte 7
-msg_offset: .byte 0
-
 #import "sprites.asm"
 
-// Bank 0
+// this will expand the pictures into the screen, colorram and bitmap RAM regions in each VIC-II block we want to use
+// these are bitmap images, the colorRam's arent really needed, we can drop them if we need the RAM for other things
+// if you drop the ColorRam, you need to comment some code in the recolor() sub
+// see https://www.c64-wiki.com/wiki/VIC_bank
+
+// VIC-II bank 0
 * = $0c00 "ScreenRam_1"; screenRam_1: .fill picture1.getScreenRamSize(), picture1.getScreenRam(i)
 * = $1c00 "ColorRam_1:"; colorRam_1: .fill picture1.getColorRamSize(), picture1.getColorRam(i)
 * = $2000 "Bitmap_1"; bitMap_1: .fill picture1.getBitmapSize(), picture1.getBitmap(i)
@@ -476,12 +478,12 @@ msg_offset: .byte 0
 * = music.location "Music"
 .fill music.size, music.getData(i)
 
-// Bank 1
+// VIC-II bank 1
 * = $4c00 "ScreenRam_2"; screenRam_2: .fill picture2.getScreenRamSize(), picture2.getScreenRam(i)
 * = $6000 "Bitmap_2"; bitMap_2: .fill picture2.getBitmapSize(), picture2.getBitmap(i)
 * = $7f40 "ColorRam_2:"; colorRam_2: .fill picture2.getColorRamSize(), picture2.getColorRam(i)
 
-// Macros
+// MACROS
 
 // this the VIC-II chip, via the CIA-2 $DD00 register, which 16kb memory bank to use for graphics
 // see https://www.c64-wiki.com/wiki/VIC_bank
@@ -493,7 +495,9 @@ msg_offset: .byte 0
     sta $dd00
 }
 
-// delay of N NOP CPU instructions
+// delay() expands to 'count' NOP CPU instructions
+// each NOP takes exactly two CPU cycles
+// see http://www.unusedino.de/ec64/technical/aay/c64/bnop.htm
 
 .macro delay(count) {
     .for (var i=0; i<=count; i++) {
@@ -501,12 +505,20 @@ msg_offset: .byte 0
     }
 }
 
-// this is a clever way to calculate a random number in a C64
+// the c64 doesn't have a random number generator, so we need to find
+// a few unpredictable variables to play with to calculate one.
+// this is a clever way to return a random number in a C64
 
 .macro rndGen(mask) {
-    lda $d012 // current raster line
-    eor $dc04 // exclusive or with current timer value
-    sbc $dc05 // substract time value
+    // see http://sta.c64.org/cbm64mem.html
+    // first we read the current raster line (0-255)
+    lda $d012
+    // then we xor it with timer A (low byte)
+    // see https://www.c64-wiki.com/wiki/CIA
+    eor $dc04
+    // then we subtract it with timer A (high byte)
+    sbc $dc05
+    // finally we mask it so we can have a number between 0 and bits^2
     and #mask
 }
 
