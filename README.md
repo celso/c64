@@ -4,11 +4,15 @@ This is a pure 6510 assembly program for the Commodore 64 made by Bright Pixel i
 
 The C64 was a famous 8-bit machine in the 80s and the highest-selling single computer model ever.
 
-Its hardware and architecture set it appart from other 8-bit personal computers at the time. Unlike most of the others, the C64 had dedicated advanced chips for graphics and sprites (the VIC-II), sound (the SID), and I/O (the CIA).
+Its hardware and architecture set it appart from other 8-bit personal computers at the time. Unlike most of the others, the C64 had dedicated advanced MOS chips for graphics and sprites (the VIC-II), sound (the SID), I/O (the CIA), and many others.
 
-These chips were not only powerful for the time, but they would perform their tasks autonomously, independently of what the main CPU, a MOS technology 6510 microprocessor, was doing. The CPU and the other chips also shared common data and memory BUSes. This was impressive in the 80s, for a relatevily cheap mass-market personal computer. 
+These chips were not only powerful for the time, but they would perform their tasks autonomously, independently of what the main CPU, a MOS technology 6510 microprocessor, was doing. For instance, the VIC-II could generate interrupts on automatic sprite collisions. The CPU and the other chips also shared common data and memory BUSes.
 
-Programming the C64 was a lot of fun too, and an art. Because of all this hardware packed together, handling the machine meant knowing its memory map and registers by heart, and dominating a quite a collection of tricks, some of which weren't documented at all. What ended up being written for the C64 by the global talented fervent community of developers went way beyond the imagination of Jack Tramiel.
+The cope with all these chips inside 64Kbytes of addressable memory, the C64 had something called memory overlay, in which different chips would access different physical data locations for the same memory address. For instance the $D000-$DFFF block could be used for RAM, I/O or access to Character ROM, by the CPU, depending on a $0001 setting. Chips would have to be turned on or off, or instructed to look for data at specific RAM/ROM locations all the time to make the most of the machine as whole.
+
+This was impressive in the 80s, for a relatevily cheap mass-market personal computer.
+
+Programming the C64 was a lot of fun, and an art. Because of the way all this hardware was packed together, handling the machine meant knowing its memory map and registers by heart, and dominating a quite a collection of tricks, some of which weren't documented at all. What ended up being written for the C64 by the global talented fervent community of developers went way beyond the imagination of Jack Tramiel.
 
 Today, in 2019, the cult is still alive. There are vast groups of developers still writing C64 games and demos, restoring and using old machines, or using emulators. The SID sound chip was so revolutionary that it still drives a community of chiptune artists all over the world. The [High Voltage SID Collection][1] has more than 50,000 songs archived and growing.
 
@@ -48,7 +52,6 @@ This should be the contents of /usr/local/KickAssembler/KickAss.cfg
 
 ```
 -showmem
--vicesymbols
 ```
 
 And we have this alias in our ~/.bash_profile
@@ -91,6 +94,34 @@ Dealing with graphics is a lot easier now too.
 
 * [Spritemate][9] is an online browser-based Commodore 64 sprite editor and supports importing and exporting of the most common file formats, as well as direct Kick Assembler hexadecimal arrays.
 
+### SID songs
+
+SID is short for the MOS 6581/8580 Sound Interface Device, the programmable sound generator chip inside the C64.
+
+A SID file (song.sid) is a special file format, later popularized by modern age SID Players and emulators, which contains both the data and the 6510 code necessary to play a music song on the SID chip.
+
+Here are a few things you should know about SID and SID files:
+
+* A SID file contains both the data and the code to play the music. The code must reside in a specific RAM address, specified inside the SID file, and changes from music to music, which means that if you want to use another .sid file with this demo, you need to make sure that:
+    * It starts in the same memory address.
+    * You change the code accordingly, if it doesn't (advanced).
+    * It doesn't overlap with the rest of the memory we need to run our program (Kick Assembler will warn you if it does). RAM is scarse, and musics can be big.
+* You can check the SID file [specification here][12].
+* You should absolutely take a look at the [High Voltage SID Collection][13] and this [SID player & visualizer][15] ([github][16]) in javascript
+
+Kick Assembler has a helper script to load and parse a SID file directly into your project. [loadSid()][14] places the song code and data in the proper RAM location while assembling, and provides the initialization and play subroutines which you can use with your code. Check [here][14] for more information.
+
+### Other resources
+
+These are handy resources you can use:
+
+* The [Commodore 64 memory map][10] explaining the functioning of all addresses, registers and memory blocks.
+* The [C64 Wiki][11] is the online bible of all things Commodore 64, including detailed information of how the hardware works.
+* Not the bible, but [Codebase64][18] is pretty good too.
+* A KickAssembler [syntax file][17] for Vim.
+* Understanding the [character and bitmap][19] graphic modes, memory banks, and how the chips interact with each other.
+
+## The Code
 
 
 
@@ -103,4 +134,13 @@ Dealing with graphics is a lot easier now too.
 [7]: http://vice-emu.sourceforge.net/vice_12.html#SEC271
 [8]: https://github.com/micheldebree/retropixels
 [9]: https://github.com/Esshahn/spritemate
-
+[10]: http://sta.c64.org/cbm64mem.html
+[11]: https://www.c64-wiki.com/
+[12]: https://www.hvsc.de/download/C64Music/DOCUMENTS/SID_file_format.txt
+[13]: https://www.hvsc.de/
+[14]: http://www.theweb.dk/KickAssembler/webhelp/content/ch12s03.html
+[15]: https://tamats.com/apps/sid/
+[16]: https://github.com/jagenjo/sidviz
+[17]: https://github.com/gryf/kickass-syntax-vim
+[18]: https://codebase64.org/
+[19]: http://www.coding64.org/?p=164
