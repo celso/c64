@@ -1,4 +1,4 @@
-# C64 Assembly Demo
+# C64 Christmas Demo
 
 This is a pure 6510 assembly program for the Commodore 64 made by Bright Pixel in 2019, because why not.
 
@@ -16,7 +16,7 @@ To cope with all these chips inside 64Kbytes of addressable memory, the C64 had 
 
 This was impressive in the 80s, for a relatevily cheap mass-market personal computer.
 
-Programming the C64 was more than a lot of fun, it was a form of art. Because of the way all this hardware was packed together, handling the machine meant knowing its memory map and registers by heart, and dominating a quite a collection of tricks, some of which weren't documented at all. What ended up being written for the C64 by the global talented fervent community of developers went way beyond the imagination of [Jack Tramiel][37].
+Programming the C64 was more than a lot of fun, it was a form of art. Because of the way all this hardware was packed together, handling the machine meant knowing its memory map and registers by heart, and dominating quite a collection of tricks, some of which weren't documented at all. What ended up being written for the C64 by the fervent community of developers all over the world went way beyond the imagination of [Jack Tramiel][37].
 
 Today, in 2019, the cult is still alive. There are vast groups of developers still writing C64 games and demos, restoring and using old machines, or using emulators. The SID sound chip was so revolutionary that it still drives a community of chiptune artists [all over][38] the world. The [High Voltage SID Collection][1] has more than 50,000 songs archived and growing.
 
@@ -83,7 +83,7 @@ alias c64="/Applications/x64.app/Contents/MacOS/x64"
 
 ### Debugging
 
-Debugging assembly when things go south can be challenging. Back in the 80s, debugging meant spending hours doing trial and error, rebooting the machine, reload the code from the cassette (or disk drive, if you were lucky), and writing code to paper just in case you'd lose it in the process.
+Debugging assembly when things go south can be challenging. Back in the 80s, debugging meant spending hours doing trial and error, rebooting the machine, reloading the code from the [cassette][39] (or [disk drive][40], if you were lucky), and writing code to paper just in case you'd lose it in the process.
 
 Luckily, now we have way better tools.
 
@@ -233,7 +233,7 @@ The C64 doesn't have a random number generator, so we need to find a few unpredi
 
 A Sprite or a Movable Object Block (abbreviated to MOB) is a piece of graphics that can move and be assigned attributes independent of other graphics or text on the screen. The VIC-II, which is responsible for this feature of the C-64, supports up to eight sprites.
 
-You can design your sprites with [Spritemate][28] and export them the Kick Assembler code directly by pressing file->save file->kick ass(hex).
+You can design your sprites with [Spritemate][28] and export them the Kick Assembler code directly by pressing file::save-file::kick-ass-hex.
 
 You can check [this page][29] for more information about Sprites and how they work.
 
@@ -316,3 +316,5 @@ Happy holidays.
 [36]: https://en.wikipedia.org/wiki/MOS_Technology_6581
 [37]: https://en.wikipedia.org/wiki/Jack_Tramiel
 [38]: https://www.kickstarter.com/projects/8-bit-symphony/8-bit-symphony-pro-double-orchestral-cd-of-8-bit-classics
+[39]: https://en.wikipedia.org/wiki/Commodore_Datasette
+[40]: https://en.wikipedia.org/wiki/Commodore_1541
