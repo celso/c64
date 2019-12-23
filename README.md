@@ -273,7 +273,9 @@ If you have questions or suggestions, leave them in the [issue tracker][32], we'
 
 If you run the demo or change it in any way,  post it in the social webs, using the tag [#c64brpx][31], or mention [@brpxco][30].
 
-We did a [ZX Spectrum demo][33] a few months back; you might want to check it too.
+We also did a [Make Your Own Christmas Card][41] webpage. Check it out.
+
+Finally, we did a [ZX Spectrum demo][33] a few months back; you might want to check it too.
 
 Happy holidays.
 
@@ -318,3 +320,4 @@ Happy holidays.
 [38]: https://www.kickstarter.com/projects/8-bit-symphony/8-bit-symphony-pro-double-orchestral-cd-of-8-bit-classics
 [39]: https://en.wikipedia.org/wiki/Commodore_Datasette
 [40]: https://en.wikipedia.org/wiki/Commodore_1541
+[41]: https://x.brpx.com/
