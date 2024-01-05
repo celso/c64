@@ -12,11 +12,11 @@ bank0bitmap:
 bank0screen:
 .incbin "screen1.koa", 8002, 1000
 
-.global bank0color
-.type       bank0color,@object
-.section    .bank0color,"awR",@progbits
-bank0color:
-.incbin "screen1.koa", 9002, 1000
+# .global bank0color
+# .type       bank0color,@object
+# .section    .bank0color,"awR",@progbits
+# bank0color:
+# .incbin "screen1.koa", 9002, 1000
 
 .global bank0bgcolor
 .type       bank0bgcolor,@object
@@ -35,11 +35,11 @@ bank1bitmap:
 bank1screen:
 .incbin "screen2.koa", 8002, 1000
 
-.global bank1color
-.type       bank1color,@object
-.section    .bank1color,"awR",@progbits
-bank1color:
-.incbin "screen2.koa", 9002, 1000
+# .global bank1color
+# .type       bank1color,@object
+# .section    .bank1color,"awR",@progbits
+# bank1color:
+# .incbin "screen2.koa", 9002, 1000
 
 .global bank1bgcolor
 .type       bank1bgcolor,@object

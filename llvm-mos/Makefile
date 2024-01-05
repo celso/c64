@@ -12,24 +12,21 @@ demo:
 	mos-c64-clang -c -o build/music.o music.s
 	mos-c64-clang -c -o build/screens.o screens.s
 	mos-c64-clang -c -o build/demo.o demo.c
-	mos-c64-clang -Os -flto \
+	mos-c64-clang++ -std=c++20 -finput-charset=utf-8 -c -o build/strings.o strings.cpp
+	mos-c64-clang++ -std=c++20 -Os -flto \
 		-Wl,--section-start=.sid=0x1000, \
 		-Wl,--section-start=.bank0screen=0x0c00, \
-		-Wl,--section-start=.bank0color=0x1c00, \
 		-Wl,--section-start=.bank0bitmap=0x2000 \
 		-Wl,--section-start=.bank1screen=0x4c00, \
-		-Wl,--section-start=.bank1color=0x7f40, \
 		-Wl,--section-start=.bank1bitmap=0x6000 \
-		-o build/demo.prg build/demo.o build/music.o build/screens.o
-	mos-c64-clang -Os -flto \
+		-o build/demo.prg build/demo.o build/music.o build/screens.o build/strings.o
+	mos-c64-clang++ -std=c++20 -Os -flto \
 		-Wl,--section-start=.sid=0x1000 \
 		-Wl,--section-start=.bank0screen=0x0c00 \
-		-Wl,--section-start=.bank0color=0x1c00 \
 		-Wl,--section-start=.bank0bitmap=0x2000 \
 		-Wl,--section-start=.bank1screen=0x4c00, \
-		-Wl,--section-start=.bank1color=0x7f40, \
 		-Wl,--section-start=.bank1bitmap=0x6000 \
-		-Wl,--lto-emit-asm -o build/demo.s build/demo.o build/music.o build/screens.o
+		-Wl,--lto-emit-asm -o build/demo.s build/demo.o build/music.o build/screens.o build/strings.o
 
 run: demo
 	@echo "Running demo"
@@ -38,8 +35,6 @@ run: demo
 sid:
 	@echo "SID file info"
 	./tools/sidinfo.py music.sid
-#	deprecated:
-#	dd if=music.sid of=music.bin bs=1 skip=126
 
 .PHONY: all demo run
 
